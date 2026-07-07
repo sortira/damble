@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Damble — the dad joke standoff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script>
+    // Set theme before paint to avoid a flash.
+    (function () {
+      var t = localStorage.getItem("damble_theme");
+      if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <button class="logo" id="logo-btn">
+      <span class="logo-mark">◧</span><span class="logo-name">Damble</span>
+    </button>
+    <nav class="nav-links" id="nav-links">
+      <button class="nav-link" data-nav="view-help">Help</button>
+      <button class="nav-link" data-nav="view-about">About</button>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle light / dark" aria-label="Toggle theme"></button>
+  </header>
+
+  <main id="app">
+    <!-- ================= HOME ================= -->
+    <section id="view-home" class="view">
+      <div class="hero">
+        <h1 class="display-xl">The dad joke standoff.</h1>
+        <p class="hero-tag">Deal a joke. Keep your face straight. The last one laughing loses.</p>
+      </div>
+      <div class="home-grid">
+        <div class="panel play-panel">
+          <h2 class="panel-title">Play</h2>
+          <label class="field"><span>Your name</span>
+            <input id="name-input" placeholder="e.g. Alex" maxlength="20" autocomplete="off"></label>
+          <button id="btn-create" class="btn solid block">Create a table</button>
+          <button id="btn-rejoin" class="btn outline block hidden"></button>
+          <div class="or"><span>or join with a code</span></div>
+          <div class="join-row">
+            <input id="code-input" placeholder="CODE" maxlength="4" autocomplete="off">
+            <button id="btn-join" class="btn">Join</button>
+          </div>
+          <p id="home-error" class="error"></p>
+        </div>
+        <div class="panel how-panel">
+          <h2 class="panel-title">How it works</h2>
+          <ol class="steps">
+            <li><span class="step-n">1</span><div><b>Gather 2+ players</b> — everyone turns their camera on.</div></li>
+            <li><span class="step-n">2</span><div><b>Deal a card</b> on your turn — or <b>gamble</b>: edit the joke and bet on it.</div></li>
+            <li><span class="step-n">3</span><div><b>Everyone else resists.</b> Their webcam measures the laughter on-device.</div></li>
+            <li><span class="step-n">4</span><div><b>You score</b> the average giggle you provoke. Straightest face wins ties.</div></li>
+          </ol>
+          <button class="btn ghost small" data-nav="view-help">Full rules →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HELP ================= -->
+    <section id="view-help" class="view hidden">
+      <div class="panel doc">
+        <h1 class="display">How to play Damble</h1>
+
+        <h3>The idea</h3>
+        <p>Damble is a laughing standoff. Everyone joins a table with their camera on. On your turn you <b>deal</b> one of your dad-joke cards to the table — and try to make everyone else crack up while they try to stay stone-faced.</p>
+
+        <h3>Scoring</h3>
+        <p>When you deal, each other player's browser measures their laughter across a short window and reports the <b>average</b> intensity (0–100%). You score <span class="mono">10 × average</span> from every player who laughs. Those points are also added to each laugher's <b>“conceded”</b> tally.</p>
+        <p>Hiding your face or looking away reads as not laughing — so it lowers your reaction (and the host can remove anyone who won't play fair).</p>
+
+        <h3 class="risk-h">The gamble</h3>
+        <p>Feeling bold? Instead of dealing a card as-is, <b>edit the joke</b> and place a <b>bet</b> (1–50 pts):</p>
+        <ul>
+          <li>Provoke <b>at least</b> your bet in laughs → you earn <b class="pos">double</b> the points.</li>
+          <li>Fall short → you <b class="neg">lose your bet</b> from your tally.</li>
+        </ul>
+        <p>High risk, high reward. Rewrite grandma's favourite into comedy gold, or crash and burn.</p>
+
+        <h3>Winning</h3>
+        <p>After everyone has dealt all their cards, the highest score wins. Ties break in favour of whoever <b>conceded the fewest</b> points — the coolest customer at the table.</p>
+
+        <h3>Controls</h3>
+        <ul>
+          <li><b>Create / Join</b> a table with a 4-letter code.</li>
+          <li><b>Host</b> can start the game and <b>kick</b> players.</li>
+          <li><b>Rejoin</b> — if you drop out or refresh, a Rejoin button restores your seat.</li>
+          <li><b>Theme</b> — toggle light / dark in the top-right.</li>
+        </ul>
+        <button class="btn solid" data-nav="view-home">← Back</button>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="view-about" class="view hidden">
+      <div class="panel doc">
+        <h1 class="display">About</h1>
+        <p class="muted-lead">Damble — a web game where the only way to win is to keep a straight face.</p>
+
+        <h3>Who made it</h3>
+        <p>Damble is a side project by <b>Aritro Shome</b> (<i>sortira</i>), a student
+          research engineer working on <b>AI interpretability &amp; alignment</b> — currently
+          researching circuit tracing at AI4Bharat, with interests spanning reasoning models,
+          reinforcement learning, synthetic data, and edge AI.</p>
+
+        <h3>Why it exists</h3>
+        <p>Most of that work lives inside the model. Damble is the opposite end of the stack:
+          a deliberate playground for exploring <b>system internals and software-engineering
+          concepts</b> hands-on, end to end. Building a silly party game turns out to be a great
+          excuse to wrestle with the real stuff:</p>
+        <ul>
+          <li><b>Real-time multiplayer</b> over WebSockets, with an <b>authoritative server-side
+            state machine</b> as the single source of truth.</li>
+          <li><b>Concurrency</b> — reaction windows, timeouts, and idempotent round resolution
+            under an async event loop.</li>
+          <li><b>On-device ML inference</b> (face-api.js on TensorFlow.js) so video never leaves
+            the browser and the server stays cheap.</li>
+          <li><b>Session identity &amp; reconnect</b>, host moderation, and graceful failure
+            handling for the messy realities of live connections.</li>
+          <li><b>Cost-conscious design</b> that fits a free-tier instance — social presence via
+            tiny messages instead of streaming video.</li>
+        </ul>
+        <p class="muted">The full breakdown lives in <span class="mono">DESIGN.md</span> for anyone
+          who wants to study how the pieces fit together.</p>
+
+        <div class="doc-links">
+          <a class="btn outline small" href="https://github.com/sortira" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn outline small" href="https://www.linkedin.com/in/aritroshome/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn outline small" href="https://x.com/silicognition" target="_blank" rel="noopener">X / Twitter</a>
+          <a class="btn outline small" href="https://silicognition.is-a.dev/" target="_blank" rel="noopener">Blog</a>
+          <a class="btn outline small" href="https://aritro.is-a.dev/" target="_blank" rel="noopener">Portfolio</a>
+          <a class="btn outline small" href="mailto:aritro.shome.official@gmail.com">Email</a>
+        </div>
+
+        <button class="btn solid" data-nav="view-home">← Back</button>
+      </div>
+    </section>
+
+    <!-- ================= LOBBY ================= -->
+    <section id="view-lobby" class="view hidden">
+      <div class="lobby-grid">
+        <div class="panel">
+          <div class="lobby-head">
+            <div><span class="eyebrow">Table code</span><div class="code-big" id="lobby-code">····</div></div>
+            <button id="btn-copy" class="btn outline small">Copy code</button>
+          </div>
+          <p class="muted">Share this code so friends can join. Need 2+ players — everyone allow the camera.</p>
+          <ul id="lobby-players" class="player-list"></ul>
+          <button id="btn-start" class="btn solid block hidden">Start game</button>
+          <p id="lobby-wait" class="muted center">Waiting for the host to start…</p>
+        </div>
+        <div class="panel cam-panel">
+          <span class="eyebrow">Your camera</span>
+          <div class="cam-frame"><video id="lobby-video" autoplay muted playsinline></video></div>
+          <p id="cam-status" class="muted small">Requesting camera…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GAME ================= -->
+    <section id="view-game" class="view hidden">
+      <div class="game-top">
+        <div class="round-pill" id="round-pill">Round 1 / 3</div>
+      </div>
+      <div id="scoreboard" class="scoreboard"></div>
+      <div class="stage">
+        <div id="turn-info" class="turn-info">Get ready…</div>
+        <div class="stage-center">
+          <div id="timer-ring" class="timer-ring hidden">
+            <svg class="ring" viewBox="0 0 120 120">
+              <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+              <circle class="ring-progress" cx="60" cy="60" r="52"></circle>
+            </svg>
+            <span class="ring-num" id="timer-num"></span>
+          </div>
+          <div id="joke-wrap" class="joke-wrap hidden">
+            <div id="gamble-flag" class="gamble-flag hidden"></div>
+            <div id="joke-box" class="joke-box"></div>
+          </div>
+        </div>
+        <div id="reactor-row" class="reactor-row hidden"></div>
+        <div id="laugh-meter" class="laugh-meter hidden"><div class="meter-fill" id="meter-fill"></div></div>
+        <div id="reaction-status" class="reaction-status"></div>
+      </div>
+      <div id="my-hand" class="hand"></div>
+    </section>
+
+    <!-- ================= GAME OVER ================= -->
+    <section id="view-over" class="view hidden">
+      <div class="hero"><h1 class="display">Game over</h1></div>
+      <div class="panel over-panel">
+        <ol id="leaderboard" class="leaderboard"></ol>
+        <button id="btn-again" class="btn solid block">Back to home</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- floating camera (game view) -->
+  <div id="cam-pip" class="cam-pip hidden">
+    <video id="game-video" autoplay muted playsinline></video>
+    <div id="live-happy" class="live-happy">·</div>
+  </div>
+
+  <!-- deal / gamble modal -->
+  <div id="deal-modal" class="modal-backdrop hidden">
+    <div class="modal">
+      <h3 class="modal-title">Your card</h3>
+      <textarea id="deal-text" class="deal-text" maxlength="280" readonly></textarea>
+      <div class="deal-choice">
+        <button id="deal-asis" class="btn solid">Deal as-is</button>
+        <button id="deal-gamble" class="btn risk">🎲 Edit &amp; gamble</button>
+      </div>
+      <div id="gamble-panel" class="gamble-panel hidden">
+        <p class="muted small">Rewrite the joke above, then set your stake.
+          Earn <b class="pos">≥ your bet</b> → <b class="pos">2× points</b>.
+          Earn less → <b class="neg">lose the bet</b>.</p>
+        <label class="bet-field">Bet: <b class="risk" id="bet-val">10</b> pts
+          <input type="range" id="bet-range" min="1" max="50" value="10"></label>
+        <div class="deal-choice">
+          <button id="deal-confirm" class="btn risk">Deal the gamble</button>
+          <button id="deal-cancel" class="btn ghost">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- start countdown -->
+  <div id="overlay" class="overlay hidden"><div id="overlay-num" class="overlay-num"></div></div>
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+  <script src="/static/js/emotion.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

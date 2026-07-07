@@ -1,0 +1,3 @@
+Actual URL: https://icanhazdadjoke.com/api
+
+Idea: A web based game utilising FastAPI backend where n users get into a lobby, they're dealt 3 cards, each having one dad joke. everyone has to turn on their camera, and when one of the players "deals" a card, the face of the other players are evaluated using mediapose (or some other library [do this client side to reduce server cost]) if they're laughing smiling etc. use the confidence score of the requisite emotions as a multiplier and add the score to the player who dealt the cards. end of the game the leaderboard shows who won. in case of tie, use the points "conceded" by the player to break the tie. 
