@@ -1,5 +1,5 @@
 /* ============================================================
-   Damble — monochrome, light/dark. Colour ONLY carries meaning:
+   Damble - monochrome, light/dark. Colour ONLY carries meaning:
      --pos  = points gained / win        (green)
      --neg  = points lost / kick / miss  (red)
      --risk = gamble / bet stake         (amber)
@@ -241,14 +241,14 @@ input:focus, textarea:focus { border-color: var(--ink); }
   border: 1px solid var(--card-edge); border-radius: 12px; padding: 22px 24px;
 }
 
-/* timer ring — monochrome */
+/* timer ring - monochrome */
 .timer-ring { position: relative; width: 108px; height: 108px; }
 .ring { width: 108px; height: 108px; transform: rotate(-90deg); }
 .ring-track { fill: none; stroke: var(--border); stroke-width: 8; }
 .ring-progress { fill: none; stroke: var(--ink); stroke-width: 8; stroke-linecap: round; }
 .ring-num { position: absolute; inset: 0; display: grid; place-items: center; font-family: "Space Grotesk"; font-weight: 700; font-size: 2rem; }
 
-/* live "reacting row" — avatars glow with each player's real-time laughter */
+/* live "reacting row" - avatars glow with each player's real-time laughter */
 .reactor-row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin: 6px 0 10px; }
 .reactor { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .reactor-face { position: relative; display: grid; place-items: center; }
@@ -275,7 +275,7 @@ input:focus, textarea:focus { border-color: var(--ink); }
 .result-list li { padding: 3px 0; color: var(--muted); }
 .result-list b { color: var(--text); }
 
-/* hand — always light "card" objects */
+/* hand - always light "card" objects */
 .hand { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .card {
   flex: 1 1 210px; max-width: 260px; min-height: 150px;

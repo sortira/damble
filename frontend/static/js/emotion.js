@@ -5,8 +5,8 @@
  *
  * Laughter is bursty (dead time while reading the joke, a burst, then a fade),
  * so a plain mean over the whole window collapses toward zero. Instead we score
- * the TOP-K average: keep the highest `TOP_FRACTION` of frames and average them
- * — roughly "your best few seconds of laughing." This ignores the ramp-up and
+ * the TOP-K average: keep the highest `TOP_FRACTION` of frames and average them,
+ * roughly "your best few seconds of laughing." This ignores the ramp-up and
  * fade, resists single fluke frames (top-K is many frames, so one spike is
  * diluted), and still returns 0 if you hide the whole time (every frame is 0).
  */

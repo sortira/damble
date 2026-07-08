@@ -40,7 +40,7 @@ function show(viewId) {
   $("nav-links").classList.toggle("hidden", GAME_VIEWS.has(viewId));
   window.scrollTo(0, 0);
 }
-// nav buttons (data-nav) — only allowed when not mid-game
+// nav buttons (data-nav): only allowed when not mid-game
 document.querySelectorAll("[data-nav]").forEach((el) => {
   el.onclick = () => {
     const target = el.dataset.nav;
@@ -131,7 +131,7 @@ function connect(lobbyId, name, token) {
   State.ws.onerror = () => { $("home-error").textContent = "Connection error."; };
   State.ws.onclose = () => {
     if (State.playerId && currentView() !== "view-over" && !window.__kicked) {
-      flash("Disconnected — you can rejoin from the home screen.");
+      flash("Disconnected. You can rejoin from the home screen.");
     }
   };
 }
@@ -147,7 +147,7 @@ async function ensureCamera(videoEl, statusEl) {
     if (statusEl) statusEl.textContent = "Camera ready ✓";
   } catch (err) {
     if (statusEl) statusEl.textContent = "⚠ Camera/model unavailable: " + err.message;
-    flash("No camera — your reactions will score 0.");
+    flash("No camera, so your reactions will score 0.");
   }
 }
 
@@ -263,7 +263,7 @@ function renderTurn() {
   const myTurn = State.currentDealerId === State.playerId;
   const dealer = State.players.find((p) => p.id === State.currentDealerId);
   $("turn-info").textContent = myTurn
-    ? "Your turn — pick a card to deal or gamble 🃏"
+    ? "Your turn: pick a card to deal or gamble 🃏"
     : `Waiting for ${dealer ? dealer.name : "…"} to deal…`;
   $("joke-wrap").classList.add("hidden");
   $("timer-ring").classList.add("hidden");
@@ -356,12 +356,12 @@ async function onCardDealt(msg) {
   const flag = $("gamble-flag");
   if (msg.is_gamble) {
     const who = msg.dealer_id === State.playerId ? "You are" : escapeHtml(msg.dealer_name) + " is";
-    flag.textContent = `🎲 ${who} gambling — bet ${msg.bet} pts`;
+    flag.textContent = `🎲 ${who} gambling: bet ${msg.bet} pts`;
     flag.classList.remove("hidden");
   } else flag.classList.add("hidden");
 
   if (msg.dealer_id === State.playerId) {
-    $("turn-info").textContent = "You dealt — watching the table 👀";
+    $("turn-info").textContent = "You dealt. Watching the table 👀";
     $("laugh-meter").classList.add("hidden");
     $("reaction-status").textContent = `Reading ${msg.expected_count} player(s)…`;
     startRing(msg.reaction_window_ms, () => { $("reaction-status").textContent = "Tallying reactions…"; });
@@ -369,7 +369,7 @@ async function onCardDealt(msg) {
   }
 
   const dealer = State.players.find((p) => p.id === msg.dealer_id);
-  $("turn-info").textContent = `${dealer ? dealer.name : "Someone"} dealt a card — try not to laugh! 😆`;
+  $("turn-info").textContent = `${dealer ? dealer.name : "Someone"} dealt a card. Try not to laugh! 😆`;
   $("laugh-meter").classList.remove("hidden");
   setMeter(0);
   $("reaction-status").textContent = "Reading your face…";
@@ -400,9 +400,9 @@ function onRoundResult(msg) {
   let head;
   if (msg.is_gamble) {
     if (msg.outcome === "win") {
-      head = `<div class="result-head">🎲 <b>${name}</b> won the gamble — earned ${msg.earned}, <span class="result-delta pos">+${msg.delta} pts (2×)</span></div>`;
+      head = `<div class="result-head">🎲 <b>${name}</b> won the gamble, earned ${msg.earned}, <span class="result-delta pos">+${msg.delta} pts (2×)</span></div>`;
     } else {
-      head = `<div class="result-head">🎲 <b>${name}</b> lost the gamble (needed ${msg.bet}, got ${msg.earned}) — <span class="result-delta neg">${msg.delta} pts</span></div>`;
+      head = `<div class="result-head">🎲 <b>${name}</b> lost the gamble (needed ${msg.bet}, got ${msg.earned}): <span class="result-delta neg">${msg.delta} pts</span></div>`;
     }
   } else {
     head = `<div class="result-head"><b>${name}</b> earned <span class="result-delta pos">+${msg.delta} pts</span></div>`;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Damble — the dad joke standoff</title>
+  <title>Damble: the dad joke standoff</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -53,8 +53,8 @@
         <div class="panel how-panel">
           <h2 class="panel-title">How it works</h2>
           <ol class="steps">
-            <li><span class="step-n">1</span><div><b>Gather 2+ players</b> — everyone turns their camera on.</div></li>
-            <li><span class="step-n">2</span><div><b>Deal a card</b> on your turn — or <b>gamble</b>: edit the joke and bet on it.</div></li>
+            <li><span class="step-n">1</span><div><b>Gather 2+ players</b>, everyone turns their camera on.</div></li>
+            <li><span class="step-n">2</span><div><b>Deal a card</b> on your turn, or <b>gamble</b>: edit the joke and bet on it.</div></li>
             <li><span class="step-n">3</span><div><b>Everyone else resists.</b> Their webcam measures the laughter on-device.</div></li>
             <li><span class="step-n">4</span><div><b>You score</b> the average giggle you provoke. Straightest face wins ties.</div></li>
           </ol>
@@ -69,11 +69,11 @@
         <h1 class="display">How to play Damble</h1>
 
         <h3>The idea</h3>
-        <p>Damble is a laughing standoff. Everyone joins a table with their camera on. On your turn you <b>deal</b> one of your dad-joke cards to the table — and try to make everyone else crack up while they try to stay stone-faced.</p>
+        <p>Damble is a laughing standoff. Everyone joins a table with their camera on. On your turn you <b>deal</b> one of your dad-joke cards to the table, and try to make everyone else crack up while they try to stay stone-faced.</p>
 
         <h3>Scoring</h3>
         <p>When you deal, each other player's browser measures their laughter across a short window and reports the <b>average</b> intensity (0–100%). You score <span class="mono">10 × average</span> from every player who laughs. Those points are also added to each laugher's <b>“conceded”</b> tally.</p>
-        <p>Hiding your face or looking away reads as not laughing — so it lowers your reaction (and the host can remove anyone who won't play fair).</p>
+        <p>Hiding your face or looking away reads as not laughing, so it lowers your reaction (and the host can remove anyone who won't play fair).</p>
 
         <h3 class="risk-h">The gamble</h3>
         <p>Feeling bold? Instead of dealing a card as-is, <b>edit the joke</b> and place a <b>bet</b> (1–50 pts):</p>
@@ -84,14 +84,14 @@
         <p>High risk, high reward. Rewrite grandma's favourite into comedy gold, or crash and burn.</p>
 
         <h3>Winning</h3>
-        <p>After everyone has dealt all their cards, the highest score wins. Ties break in favour of whoever <b>conceded the fewest</b> points — the coolest customer at the table.</p>
+        <p>After everyone has dealt all their cards, the highest score wins. Ties break in favour of whoever <b>conceded the fewest</b> points: the coolest customer at the table.</p>
 
         <h3>Controls</h3>
         <ul>
           <li><b>Create / Join</b> a table with a 4-letter code.</li>
           <li><b>Host</b> can start the game and <b>kick</b> players.</li>
-          <li><b>Rejoin</b> — if you drop out or refresh, a Rejoin button restores your seat.</li>
-          <li><b>Theme</b> — toggle light / dark in the top-right.</li>
+          <li><b>Rejoin</b>: if you drop out or refresh, a Rejoin button restores your seat.</li>
+          <li><b>Theme</b>: toggle light / dark in the top-right.</li>
         </ul>
         <button class="btn solid" data-nav="view-home">← Back</button>
       </div>
@@ -101,11 +101,11 @@
     <section id="view-about" class="view hidden">
       <div class="panel doc">
         <h1 class="display">About</h1>
-        <p class="muted-lead">Damble — a web game where the only way to win is to keep a straight face.</p>
+        <p class="muted-lead">Damble: a web game where the only way to win is to keep a straight face.</p>
 
         <h3>Who made it</h3>
         <p>Damble is a side project by <b>Aritro Shome</b> (<i>sortira</i>), a student
-          research engineer working on <b>AI interpretability &amp; alignment</b> — currently
+          research engineer working on <b>AI interpretability &amp; alignment</b>, currently
           researching circuit tracing at AI4Bharat, with interests spanning reasoning models,
           reinforcement learning, synthetic data, and edge AI.</p>
 
@@ -117,13 +117,13 @@
         <ul>
           <li><b>Real-time multiplayer</b> over WebSockets, with an <b>authoritative server-side
             state machine</b> as the single source of truth.</li>
-          <li><b>Concurrency</b> — reaction windows, timeouts, and idempotent round resolution
+          <li><b>Concurrency</b>: reaction windows, timeouts, and idempotent round resolution
             under an async event loop.</li>
           <li><b>On-device ML inference</b> (face-api.js on TensorFlow.js) so video never leaves
             the browser and the server stays cheap.</li>
           <li><b>Session identity &amp; reconnect</b>, host moderation, and graceful failure
             handling for the messy realities of live connections.</li>
-          <li><b>Cost-conscious design</b> that fits a free-tier instance — social presence via
+          <li><b>Cost-conscious design</b> that fits a free-tier instance: social presence via
             tiny messages instead of streaming video.</li>
         </ul>
         <p class="muted">The full breakdown lives in <span class="mono">DESIGN.md</span> for anyone
@@ -150,7 +150,7 @@
             <div><span class="eyebrow">Table code</span><div class="code-big" id="lobby-code">····</div></div>
             <button id="btn-copy" class="btn outline small">Copy code</button>
           </div>
-          <p class="muted">Share this code so friends can join. Need 2+ players — everyone allow the camera.</p>
+          <p class="muted">Share this code so friends can join. Need 2+ players, everyone allow the camera.</p>
           <ul id="lobby-players" class="player-list"></ul>
           <button id="btn-start" class="btn solid block hidden">Start game</button>
           <p id="lobby-wait" class="muted center">Waiting for the host to start…</p>
